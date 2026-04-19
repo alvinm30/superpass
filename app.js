@@ -795,3 +795,77 @@ function stopChatResize() {
     document.removeEventListener('mouseup', stopChatResize);
 }
 
+
+/* =========================================
+   Tutorial System
+========================================= */
+const tutorialSteps = [
+    { title: "Select Your Account", text: "First, click on your name from the login screen to enter your personalized dashboard.", icon: "??" },
+    { title: "Daily Questions", text: "Once logged in, you'll see the daily board. You can navigate dates using the calendar at the top right to view past questions.", icon: "??" },
+    { title: "Answer & Learn", text: "Type your answer and submit! Correct answers remain hidden until revealed, so everyone gets a fair chance to guess.", icon: "??" },
+    { title: "Add Your Own", text: "Click the '+ Add Question' button at the top to challenge your friends with a new puzzle or question.", icon: "?" },
+    { title: "Paste Images", text: "Got a screenshot? Simply Paste (Ctrl+V) directly into the question or answer text boxes to upload an image!", icon: "??" },
+    { title: "Self Study Mode", text: "Click the 'Anki Flashcards' button on the login screen to privately test your memory on random past questions.", icon: "??" }
+];
+
+let currentTutorialStep = 0;
+
+function startTutorial() {
+    currentTutorialStep = 0;
+    document.getElementById('tutorial-modal').classList.remove('hidden');
+    renderTutorialStep();
+}
+
+function closeTutorial() {
+    document.getElementById('tutorial-modal').classList.add('hidden');
+}
+
+function renderTutorialStep() {
+    const step = tutorialSteps[currentTutorialStep];
+    document.getElementById('tutorial-title').innerText = step.title;
+    document.getElementById('tutorial-text').innerText = step.text;
+    document.getElementById('tutorial-image-container').innerText = step.icon;
+
+    const prevBtn = document.getElementById('tutorial-prev');
+    const nextBtn = document.getElementById('tutorial-next');
+    
+    prevBtn.style.visibility = currentTutorialStep === 0 ? 'hidden' : 'visible';
+    
+    if (currentTutorialStep === tutorialSteps.length - 1) {
+        nextBtn.innerText = "Let's Go! ??";
+        nextBtn.onclick = closeTutorial;
+    } else {
+        nextBtn.innerHTML = "Next &rarr;";
+        nextBtn.onclick = tutorialNext;
+    }
+
+    renderTutorialDots();
+}
+
+function tutorialNext() {
+    if (currentTutorialStep < tutorialSteps.length - 1) {
+        currentTutorialStep++;
+        renderTutorialStep();
+    }
+}
+
+function tutorialPrev() {
+    if (currentTutorialStep > 0) {
+        currentTutorialStep--;
+        renderTutorialStep();
+    }
+}
+
+function renderTutorialDots() {
+    const dotsContainer = document.getElementById('tutorial-dots');
+    dotsContainer.innerHTML = '';
+    for (let i = 0; i < tutorialSteps.length; i++) {
+        const dot = document.createElement('div');
+        dot.style.width = '10px';
+        dot.style.height = '10px';
+        dot.style.borderRadius = '50%';
+        dot.style.background = i === currentTutorialStep ? '#a594f9' : '#555';
+        dot.style.transition = 'background 0.3s';
+        dotsContainer.appendChild(dot);
+    }
+}
