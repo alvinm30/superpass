@@ -66,7 +66,17 @@ function changeDate(offset) {
 async function loadQuestionsForDate() {
     const container = document.getElementById('questions-container');
     container.innerHTML = '<div class="loading">Loading questions...</div>';
-    currentDate = document.getElementById('date-picker').value;
+    
+    let pickerDate = document.getElementById('date-picker').value;
+    if (!pickerDate) {
+        const initDate = new Date();
+        const y = initDate.getFullYear();
+        const m = String(initDate.getMonth() + 1).padStart(2, '0');
+        const d = String(initDate.getDate()).padStart(2, '0');
+        pickerDate = `${y}-${m}-${d}`;
+        document.getElementById('date-picker').value = pickerDate;
+    }
+    currentDate = pickerDate;
 
     const { data: questions, error: qError } = await db
         .from('questions')
