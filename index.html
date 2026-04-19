@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Superpass - Daily Quiz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Supabase JS Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <!-- HTML2PDF library for instant PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <!-- Marked.js for Markdown Parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <!-- MathJax for LaTeX Support -->
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <!-- Left Banner -->
+    <div class="banner banner-left">
+        <div class="banner-track">
+            <!-- First Set -->
+            <img src="image/WhatsApp Image 2026-04-19 at 10.21.20 PM (1).jpeg">
+            <img src="image/WhatsApp Image 2026-04-19 at 10.21.20 PM (2).jpeg">
+            <img src="image/WhatsApp Image 2026-04-19 at 10.21.20 PM (3).jpeg">
+            <img src="image/WhatsApp Image 2026-04-19 at 10.21.20 PM.jpeg">
+            <img src="image/WhatsApp Image 2026-04-19 at 10.21.21 PM (1).jpeg">
+            <img src="image/WhatsApp Image 2026-04-19 at 10.21.21 PM (2).jpeg">
+            <img src="image/WhatsApp Image 2026-04-19 at 10.21.21 PM (3).jpeg">
+            <img src="image/WhatsApp Image 2026-04-19 at 10.21.21 PM.jpeg">
+            <img src="image/WhatsApp Image 2026-04-19 at 10.21.22 PM (1).jpeg">
+            <img src="image/WhatsApp Image 2026-04-19 at 10.21.22 PM (2).jpeg">
+            <img src="image/WhatsApp Image 2026-04-19 at 10.21.22 PM.jpeg">
+            <!-- Duplicate for infinite scroll -->
+            <img src="image/WhatsApp Image 2026-04-19 at 10.21.20 PM (1).jpeg">
+            <img src="image/WhatsApp Image 2026-04-19 at 10.21.20 PM (2).jpeg">
+            <img src="image/WhatsApp Image 2026-04-19 at 10.21.20 PM (3).jpeg">
+            <img src="image/WhatsApp Image 2026-04-19 at 10.21.20 PM.jpeg">
+            <img src="image/WhatsApp Image 2026-04-19 at 10.21.21 PM (1).jpeg">
+            <img src="image/WhatsApp Image 2026-04-19 at 10.21.21 PM (2).jpeg">
+            <img src="image/WhatsApp Image 2026-04-19 at 10.21.21 PM (3).jpeg">
+            <img src="image/WhatsApp Image 2026-04-19 at 10.21.21 PM.jpeg">
+            <img src="image/WhatsApp Image 2026-04-19 at 10.21.22 PM (1).jpeg">
+            <img src="image/WhatsApp Image 2026-04-19 at 10.21.22 PM (2).jpeg">
+            <img src="image/WhatsApp Image 2026-04-19 at 10.21.22 PM.jpeg">
+        </div>
+    </div>
+
+    <!-- Right Banner -->
+    <div class="banner banner-right">
+        <div class="banner-track reverse">
+            <!-- First Set -->
+            <img src="image/WhatsApp Image 2026-04-19 at 10.21.20 PM (1).jpeg">
+            <img src="image/WhatsApp Image 2026-04-19 at 10.21.20 PM (2).jpeg">
+            <img src="image/WhatsApp Image 2026-04-19 at 10.21.20 PM (3).jpeg">
+            <img src="image/WhatsApp Image 2026-04-19 at 10.21.20 PM.jpeg">
+            <img src="image/WhatsApp Image 2026-04-19 at 10.21.21 PM (1).jpeg">
+            <img src="image/WhatsApp Image 2026-04-19 at 10.21.21 PM (2).jpeg">
+            <img src="image/WhatsApp Image 2026-04-19 at 10.21.21 PM (3).jpeg">
+            <img src="image/WhatsApp Image 2026-04-19 at 10.21.21 PM.jpeg">
+            <img src="image/WhatsApp Image 2026-04-19 at 10.21.22 PM (1).jpeg">
+            <img src="image/WhatsApp Image 2026-04-19 at 10.21.22 PM (2).jpeg">
+            <img src="image/WhatsApp Image 2026-04-19 at 10.21.22 PM.jpeg">
+            <!-- Duplicate for infinite scroll -->
+            <img src="image/WhatsApp Image 2026-04-19 at 10.21.20 PM (1).jpeg">
+            <img src="image/WhatsApp Image 2026-04-19 at 10.21.20 PM (2).jpeg">
+            <img src="image/WhatsApp Image 2026-04-19 at 10.21.20 PM (3).jpeg">
+            <img src="image/WhatsApp Image 2026-04-19 at 10.21.20 PM.jpeg">
+            <img src="image/WhatsApp Image 2026-04-19 at 10.21.21 PM (1).jpeg">
+            <img src="image/WhatsApp Image 2026-04-19 at 10.21.21 PM (2).jpeg">
+            <img src="image/WhatsApp Image 2026-04-19 at 10.21.21 PM (3).jpeg">
+            <img src="image/WhatsApp Image 2026-04-19 at 10.21.21 PM.jpeg">
+            <img src="image/WhatsApp Image 2026-04-19 at 10.21.22 PM (1).jpeg">
+            <img src="image/WhatsApp Image 2026-04-19 at 10.21.22 PM (2).jpeg">
+            <img src="image/WhatsApp Image 2026-04-19 at 10.21.22 PM.jpeg">
+        </div>
+    </div>
+
+    <div id="app">
+        <!-- Login Screen -->
+        <div id="login-screen" class="screen">
+            <h1>Select Your Account</h1>
+            <div class="user-cards">
+                <button class="user-card" onclick="login('Alvin')">Alvin</button>
+                <button class="user-card" onclick="login('Avis')">Avis</button>
+                <button class="user-card" onclick="login('Martin')">Martin</button>
+                <button class="user-card" onclick="login('Kelly')">Kelly</button>
+                <button class="user-card" onclick="login('Vinci')">Vinci</button>
+            </div>
+            <div style="text-align: center; margin-top: 50px; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 30px;">
+                <h2 style="margin-bottom: 20px; font-weight: 800; letter-spacing: 1px;">Self Study Mode</h2>
+                <button class="btn-primary" onclick="openAnkiSetup()" style="background: #a594f9; color: #fff; padding: 15px 40px; font-size: 1.2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">Anki Flashcards</button>
+            </div>
+        </div>
+
+        <!-- Anki Setup Screen -->
+        <div id="anki-setup-screen" class="screen hidden" style="text-align: center;">
+            <header>
+                <h1>Anki Settings</h1>
+                <button onclick="showScreen('login-screen')" class="btn-secondary" style="position: absolute; top: 40px; left: 20px;">&larr; Back</button>
+            </header>
+            <div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 40px; border-radius: 16px; display: inline-block; margin-top: 20px; border: 1px solid rgba(255,255,255,0.2);">
+                <label style="display: block; font-size: 1.3rem; margin-bottom: 20px; font-weight: 600;">How many random questions to review?</label>
+                <input type="number" id="anki-count" min="1" max="100" value="5" class="table-textarea" style="width: 150px; text-align: center; font-size: 1.8rem; min-height: unset; margin: 0 auto 20px auto; color: #000;">
+                <button class="btn-primary" onclick="startAnkiSession()" id="anki-start-btn" style="width: 100%; font-size: 1.2rem; padding: 15px; background: #28a745;">Start Session</button>
+            </div>
+        </div>
+
+        <!-- Anki Study Screen -->
+        <div id="anki-study-screen" class="screen hidden">
+            <header>
+                <h1 id="anki-progress">Question 1 / 5</h1>
+                <button onclick="showScreen('login-screen')" class="btn-small" style="background:#6c757d; position: absolute; right: 20px; top: 40px; padding: 10px 20px; border-radius: 8px; font-size: 1rem;">Exit</button>
+            </header>
+            <main>
+                <div style="background: #fff; padding: 40px; border-radius: 16px; color: #2b2d31; max-width: 800px; margin: 0 auto; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+                    <div id="anki-q-content" class="latex-content" style="font-size: 1.4rem; font-weight: 600; margin-bottom: 25px; line-height: 1.6;"></div>
+                    
+                    <textarea id="anki-user-answer" class="table-textarea" placeholder="Type your answer here to reveal the key..." style="margin-bottom: 20px; font-size: 1.1rem; min-height: 120px;"></textarea>
+                    <button id="anki-submit-btn" class="btn-primary" onclick="submitAnkiAnswer()" style="width: 100%; font-size: 1.2rem; padding: 15px;">Show Answer</button>
+                    
+                    <div id="anki-result" class="hidden" style="margin-top: 30px; padding-top: 30px; border-top: 2px solid #e3e5e8;">
+                        <h3 style="color: #4e5058; margin-bottom: 10px; font-size: 1.1rem; text-transform: uppercase;">Your Answer</h3>
+                        <div id="anki-show-user" style="margin-bottom: 25px; font-size: 1.1rem; padding: 20px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #6c757d; white-space: pre-wrap;"></div>
+                        
+                        <h3 style="color: #28a745; margin-bottom: 10px; font-size: 1.1rem; text-transform: uppercase;">Correct Answer</h3>
+                        <div id="anki-show-correct" class="latex-content" style="margin-bottom: 20px; font-size: 1.2rem; padding: 20px; background: #e8f5e9; border-radius: 8px; border-left: 4px solid #28a745; font-weight: bold; color: #155724; white-space: pre-wrap;"></div>
+                        
+                        <div id="anki-show-ref" style="font-style: italic; color: #6c757d; margin-bottom: 30px; font-size: 1rem; padding-left: 10px;"></div>
+                        
+                        <button class="btn-primary" onclick="nextAnkiQuestion()" style="width: 100%; font-size: 1.2rem; padding: 15px; background: #000;">Next Question &rarr;</button>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Dashboard Screen -->
+        <div id="dashboard-screen" class="screen hidden">
+            <header>
+                <div class="user-info">Logged in as: <strong id="current-user"></strong> <button onclick="logout()" class="btn-small">Logout</button></div>
+                <h1>Daily Quiz</h1>
+                <div class="date-navigation">
+                    <button onclick="changeDate(-1)">&larr; Prev</button>
+                    <input type="date" id="date-picker" onchange="loadQuestionsForDate()">
+                    <button onclick="changeDate(1)">Next &rarr;</button>
+                </div>
+            </header>
+
+            <main>
+                <div class="actions">
+                    <button onclick="showAskQuestionModal()" class="btn-primary">Ask a Question</button>
+                    <button onclick="exportToLatex()" class="btn-secondary">Download PDF</button>
+                </div>
+
+                <div id="questions-container">
+                    <!-- Questions will be dynamically loaded here -->
+                    <div class="loading">Loading questions...</div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Ask/Edit Question Modal -->
+    <div id="question-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('question-modal')">&times;</span>
+            <h2 id="modal-title">Ask a Question</h2>
+            <form id="question-form" onsubmit="submitQuestion(event)">
+                <input type="hidden" id="q-id">
+                <div class="form-group">
+                    <label for="q-content">Question Content (LaTeX supported):</label>
+                    <textarea id="q-content" required rows="4"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="q-image">Attach Image (Optional):</label>
+                    <input type="file" id="q-image" accept="image/*" class="table-textarea" style="padding: 10px; min-height: auto;">
+                    <div id="q-image-preview-container" class="hidden" style="margin-top: 10px;">
+                        <img id="q-image-preview" src="" style="max-height: 100px; border-radius: 8px; border: 2px solid #e3e5e8;">
+                        <button type="button" class="btn-small" onclick="removeImageUpload()" style="margin-top: 5px; display: block;">Remove Image</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="q-answer">Correct Answer Key:</label>
+                    <textarea id="q-answer" required rows="2"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="q-ref">Reference (optional):</label>
+                    <input type="text" id="q-ref">
+                </div>
+                <button type="submit" id="submit-question-btn" class="btn-primary">Save Question</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Image Zoom Modal -->
+    <div id="image-zoom-modal" class="modal hidden" style="background-color: rgba(0,0,0,0.9); z-index: 2000;" onclick="closeModal('image-zoom-modal')">
+        <span class="close" style="position: absolute; top: 20px; right: 40px; color: white; font-size: 40px;">&times;</span>
+        <img id="zoomed-image" style="margin: auto; display: block; max-width: 90%; max-height: 90vh; border-radius: 8px; margin-top: 2%; box-shadow: 0 10px 40px rgba(0,0,0,0.5);" src="">
+    </div>
+
+    <!-- DeepSeek AI Chat Button -->
+    <div id="ai-chat-btn" onclick="toggleAIChat()" style="position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: #fff; border-radius: 50%; box-shadow: 0 8px 20px rgba(0,0,0,0.3); display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 1000; transition: transform 0.2s; border: 2px solid #4d6bfe;">
+        <img src="https://chat.deepseek.com/favicon.svg" alt="DeepSeek" style="width: 36px; height: 36px; border-radius: 50%;" onerror="this.src='https://www.deepseek.com/favicon.ico'; this.style.width='32px'; this.style.height='32px';">
+    </div>
+
+    <!-- DeepSeek AI Chat Panel -->
+    <div id="ai-chat-panel" class="hidden" style="position: fixed; bottom: 100px; right: 30px; width: 450px; height: 600px; background: white; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); display: flex; flex-direction: column; z-index: 1000; overflow: hidden; border: 1px solid #e3e5e8; min-width: 300px; min-height: 400px; max-width: 90vw; max-height: 85vh;">
+        
+        <!-- Top-Left Resize Handle -->
+        <div id="chat-resize-handle" style="position: absolute; top: 0; left: 0; width: 24px; height: 24px; cursor: nwse-resize; z-index: 1001; display: flex; align-items: flex-start; justify-content: flex-start; padding: 4px;">
+            <div style="width: 12px; height: 12px; border-top: 3px solid rgba(255,255,255,0.7); border-left: 3px solid rgba(255,255,255,0.7);"></div>
+        </div>
+
+        <div style="background: #a594f9; padding: 15px 15px 15px 35px; color: white; font-weight: bold; font-size: 1.1rem; display: flex; justify-content: space-between; align-items: center; position: relative;">
+            <span>DeepSeek Assistant</span>
+            <span onclick="toggleAIChat()" style="cursor: pointer; font-size: 1.5rem;">&times;</span>
+        </div>
+        <div id="ai-chat-history" style="flex: 1; padding: 15px; overflow-y: auto; background: #f8f9fa; display: flex; flex-direction: column; gap: 10px; color: #2b2d31; font-size: 0.95rem;">
+            <div style="background: #e3e5e8; padding: 10px 15px; border-radius: 12px; align-self: flex-start; max-width: 85%;">Hello! I am your AI assistant. How can I help you study today?</div>
+        </div>
+        <div style="padding: 15px; background: white; border-top: 1px solid #e3e5e8; display: flex; gap: 10px;">
+            <input type="text" id="ai-chat-input" placeholder="Ask a question..." style="flex: 1; padding: 10px; border: 2px solid #e3e5e8; border-radius: 8px; outline: none; font-family: inherit;" onkeypress="if(event.key === 'Enter') sendAIMessage()">
+            <button onclick="sendAIMessage()" style="background: #000; color: white; border: none; padding: 0 15px; border-radius: 8px; cursor: pointer; font-weight: bold;">Send</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

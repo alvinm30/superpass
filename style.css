@@ -1,0 +1,343 @@
+/* Reset and base styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    /* Clean wave-like gradient mimicking discord nitro */
+    background: linear-gradient(135deg, #a594f9 0%, #6246ea 100%);
+    background-attachment: fixed;
+    color: #fff;
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+#app {
+    max-width: 95%; /* Stretch to almost the full width of the screen */
+    width: 1600px; /* Provides a much wider container */
+    margin: 0 auto;
+    padding: 40px 20px;
+    position: relative;
+    z-index: 10;
+}
+
+/* --- Moving Banners Side Panels --- */
+.banner {
+    position: fixed;
+    top: 0;
+    width: 15vw; /* Adjust width as needed */
+    height: 100vh;
+    overflow: hidden;
+    z-index: 1;
+    pointer-events: none; /* Let clicks pass through to background */
+}
+
+.banner-left {
+    left: 0;
+}
+
+.banner-right {
+    right: 0;
+}
+
+.banner-track {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between images */
+    animation: scrollVertical 30s linear infinite;
+    opacity: 0.5; /* 50% transparency */
+}
+
+.banner-track.reverse {
+    animation: scrollVerticalReverse 30s linear infinite;
+}
+
+.banner-track img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+/* Animations for Infinite Scroll */
+@keyframes scrollVertical {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-50%); } 
+    /* Halved because the content is exactly duplicated */
+}
+
+@keyframes scrollVerticalReverse {
+    0% { transform: translateY(-50%); }
+    100% { transform: translateY(0); }
+}
+
+/* Typography styles */
+h1 {
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+}
+
+/* User Cards */
+.user-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 40px;
+}
+.user-card {
+    background-color: #000;
+    color: #fff;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    padding: 15px 35px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+}
+.user-card:hover {
+    background-color: #2b2d31;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 20px rgba(0,0,0,0.3);
+    border-color: #5865F2;
+}
+
+/* Headers & Navigation */
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.user-info {
+    align-self: flex-end;
+    margin-bottom: 10px;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+.date-navigation {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+.date-navigation input, .date-navigation button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    background: #000;
+    color: #fff;
+    font-family: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.date-navigation input {
+    background: #fff;
+    color: #000;
+}
+.date-navigation button:hover {
+    background: #2b2d31;
+}
+
+/* Actions */
+.actions {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.img-preview {
+    display: block;
+    max-width: 100%;
+    max-height: 140px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 15px;
+    border: 2px solid #e3e5e8;
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.img-preview:hover {
+    transform: scale(1.05);
+    border-color: #5865F2;
+}
+
+.btn-primary, .btn-secondary, .btn-small {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-family: inherit;
+    color: white;
+    transition: all 0.2s ease;
+}
+.btn-primary { background-color: #000; color: #fff; }
+.btn-primary:hover { background-color: #2b2d31; transform: translateY(-2px); }
+.btn-secondary { background-color: #fff; color: #000; }
+.btn-secondary:hover { background-color: #f6f6f6; transform: translateY(-2px); }
+.btn-small { background-color: #da373c; padding: 6px 12px; font-size: 0.9em; margin-left:10px; border-radius: 6px; }
+.btn-small:hover { background-color: #a12828; }
+
+/* Dashboard and Questions */
+.hidden { display: none !important; }
+
+#questions-container {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.quiz-table {
+    width: 100%;
+    min-width: 1200px; /* Ensures columns don't instantly squish */
+    border-collapse: collapse;
+    background: #fff;
+    color: #2b2d31;
+    overflow: hidden;
+}
+
+.quiz-table th, .quiz-table td {
+    padding: 12px 15px; /* Reduced vertical padding to show more rows/cleaner, horizontal padding helps breathing room */
+    text-align: left;
+    border-bottom: 1px solid #ebedef;
+    vertical-align: top;
+    min-width: 180px; /* Gives each column enough breathing room */
+}
+
+.quiz-table th {
+    background-color: #f2f3f5;
+    color: #4e5058;
+    font-size: 1.05em; /* Slightly smaller header to save space */
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.table-textarea {
+    width: 100%;
+    min-width: 180px;
+    min-height: 90px;
+    padding: 12px;
+    border: 2px solid #e3e5e8;
+    border-radius: 8px;
+    resize: vertical;
+    font-family: inherit;
+    font-size: 1rem;
+    line-height: 1.4;
+    background: #f2f3f5;
+    color: #2b2d31;
+    font-weight: 500;
+    transition: border-color 0.2s;
+}
+.table-textarea:focus {
+    outline: none;
+    border-color: #5865F2;
+    background: #fff;
+}
+
+.action-btn {
+    display: block;
+    width: 100%;
+    margin-bottom: 8px;
+    margin-left: 0;
+    text-align: center;
+    border-radius: 8px;
+    padding: 8px 12px;
+}
+
+.latex-content {
+    min-width: 250px;
+    font-size: 1.05rem;
+}
+
+.q-reveal {
+    margin-top: 10px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #5865F2;
+}
+
+.all-answers ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+.all-answers li {
+    background: #fff;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 8px;
+    border: 1px solid #e3e5e8;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+/* Modals */
+.modal {
+    position: fixed; z-index: 1000; left: 0; top: 0;
+    width: 100%; height: 100%; overflow: auto;
+    background-color: rgba(0,0,0,0.6);
+    backdrop-filter: blur(5px);
+}
+.modal-content {
+    background-color: #fff; 
+    color: #2b2d31;
+    margin: 5% auto;
+    padding: 30px; 
+    border: none;
+    width: 90%; max-width: 500px; 
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+.modal-content h2 {
+    margin-bottom: 20px;
+    font-weight: 800;
+}
+.close {
+    color: #99aab5; float: right; font-size: 28px; font-weight: bold; cursor: pointer;
+    transition: color 0.2s;
+}
+.close:hover { color: #da373c; }
+
+.form-group {
+    margin-bottom: 20px;
+}
+.form-group label {
+    display: block; margin-bottom: 8px; font-weight: 600; color: #4e5058;
+}
+.form-group input, .form-group textarea {
+    width: 100%; padding: 12px; border: 2px solid #e3e5e8; border-radius: 8px;
+    font-family: inherit; font-size: 1rem; background: #f2f3f5; transition: border 0.2s;
+}
+.form-group input:focus, .form-group textarea:focus {
+    outline: none; border-color: #5865F2; background: #fff;
+}
+.form-group button[type="submit"] {
+    width: 100%; font-size: 1.1rem; padding: 14px; margin-top: 10px;
+}
+
+.loading {
+    text-align: center; font-style: italic; color: #fff; padding: 30px; font-size: 1.2rem;
+}
