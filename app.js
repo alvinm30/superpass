@@ -15,8 +15,8 @@ let debounceTimer;
 
 // On Load
 document.addEventListener('DOMContentLoaded', () => {
-    checkLogin();
     document.getElementById('date-picker').value = currentDate;
+    checkLogin();
 });
 
 // Authentication
