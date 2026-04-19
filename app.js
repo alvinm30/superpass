@@ -869,3 +869,27 @@ function renderTutorialDots() {
         dotsContainer.appendChild(dot);
     }
 }
+
+/* =========================================
+   Background Animation Toggle
+========================================= */
+let isBgMoving = true;
+
+function toggleBgAnimation() {
+    const tracks = document.querySelectorAll('.banner-track');
+    const btn = document.getElementById('toggle-bg-animation');
+    
+    if (isBgMoving) {
+        tracks.forEach(track => {
+            track.style.animationPlayState = 'paused';
+        });
+        btn.innerHTML = '🟢 Start Background';
+        isBgMoving = false;
+    } else {
+        tracks.forEach(track => {
+            track.style.animationPlayState = 'running';
+        });
+        btn.innerHTML = '🔴 Stop Background';
+        isBgMoving = true;
+    }
+}
