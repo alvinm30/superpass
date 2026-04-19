@@ -881,13 +881,13 @@ function toggleBgAnimation() {
     
     if (isBgMoving) {
         tracks.forEach(track => {
-            track.style.animationPlayState = 'paused';
+            track.style.setProperty('animation-play-state', 'paused', 'important');
         });
         btn.innerHTML = '🟢 Start Background';
         isBgMoving = false;
     } else {
         tracks.forEach(track => {
-            track.style.animationPlayState = 'running';
+            track.style.setProperty('animation-play-state', 'running', 'important');
         });
         btn.innerHTML = '🔴 Stop Background';
         isBgMoving = true;
